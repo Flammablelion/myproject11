@@ -10,7 +10,6 @@ export class AppComponent {
 
   title = 'project11';
   card: MyCards[] = [];
-  editCard: MyCards;
 
 
   onAddNote(note: MyCards){
@@ -19,9 +18,6 @@ export class AppComponent {
     ? this.card[this.card.length - 1].id +1 : 0;
 
     this.card.push(note);
-  }
-  onEditCard(index:number){
-      this.editCard = this.card[index];
   }
 
   onDeleteCard(index:number) {

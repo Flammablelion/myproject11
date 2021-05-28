@@ -8,19 +8,31 @@ import { MyCards } from 'src/app/dhared/interfaces/cards.interface';
 })
 export class CardComponent implements OnInit {
   @Input() card: MyCards[];
+  
   @Output() deleteCard =
   new EventEmitter<number>();
-  @Output() getEdit =
-  new EventEmitter<number>();
-  display: string = "inline-block";
-  disactive:string = "none"
+  
+  editText : string = "";
+  editName : string = "";
+  editIndex :number;
+  editActive :boolean = false;
    
   onDeleteCard(index:number){
    this.deleteCard.emit(index)
   }
   
-  onGetEdit(index:number){
-    this.getEdit.emit(index)
+  getEdit(index:number){
+   this.editActive = true;
+   this.editName = this.card[index].name;
+   this.editText = this.card[index].inputText;
+   this.editIndex = index;
+
+  }
+  setEdit(){
+    this.card[this.editIndex].name = this.editName;
+    this.card[this.editIndex].inputText = this.editText;
+    this.card[this.editIndex].date = new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString();
+    this.editActive = false;
   }
 
 

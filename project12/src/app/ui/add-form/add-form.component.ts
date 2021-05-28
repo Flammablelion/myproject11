@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter,Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MyCards } from 'src/app/dhared/interfaces/cards.interface';
 
 
@@ -9,21 +9,21 @@ import { MyCards } from 'src/app/dhared/interfaces/cards.interface';
 })
 export class AddFormComponent implements OnInit {
 
-  inputName :string;
-  text : string;
-  @Output() addNote = new EventEmitter<MyCards>(); 
+  inputName: string;
+  text: string;
+  @Output() addNote = new EventEmitter<MyCards>();
   @Input() editCard: MyCards;
 
 
   getClear() {
-    this.inputName= "";
+    this.inputName = "";
     this.text = "";
   }
-  onAddNote(){
-    let note: MyCards = {  
+  onAddNote() {
+    let note: MyCards = {
       name: this.inputName,
       inputText: this.text,
-      date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString() 
+      date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString()
     }
     this.addNote.emit(note);
   }
